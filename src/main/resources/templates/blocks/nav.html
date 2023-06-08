@@ -1,0 +1,38 @@
+<nav th:fragment="nav" class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient"
+     style="background: linear-gradient(90deg, rgb(0,0,0), #595959, rgb(0,0,0));">
+    <div class="container"><a class="navbar-brand logo" href="/">DentistryClinic</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Услуги</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">О нас</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/category">Расширить базу
+                    услуг</a></li>
+                <li th:if="${role == 'MANAGER'}" class="nav-item"><a class="nav-link" href="/doctor">Профиль</a></li>
+                <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/doctors">Информация о
+                    врачах</a></li>
+                <li th:if="${role == 'MANAGER' or role == 'CLIENT'}" class="nav-item"><a class="nav-link"
+                                                                                         href="/notes/my">Записи на
+                    услуги</a></li>
+                <li th:if="${role == 'MANAGER'}" class="nav-item"><a class="nav-link" href="/notes/add">Добавить новую
+                    услугу</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/stats">Данные
+                    деятельности</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/users">Пользователи</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/login">Авторизация</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/reg">Создать учетную запись</a>
+                </li>
+                <li th:if="${role != 'NOT'}" class="nav-item">
+                    <form action="/logout" method="post">
+                        <button class="btn" type="submit" style="color: var(--bs-navbar-color);font-weight: bold;">
+                            Выйти
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
